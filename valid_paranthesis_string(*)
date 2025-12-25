@@ -1,0 +1,35 @@
+class Solution {
+    public boolean checkValidString(String s) {
+    Stack <Integer>brackets=new Stack<>();
+    Stack <Integer>star=new Stack<>();
+    int i=0;
+    for(char ch:s.toCharArray()){
+    if(ch=='('){
+    brackets.push(i);
+    }
+    else if(ch=='*'){
+    star.push(i);
+    }
+    else{
+    if(!brackets.isEmpty()){
+    brackets.pop();
+    }
+    else if(!star.isEmpty()){
+    star.pop();
+    }
+    else{
+    return false;
+    }
+    }
+    i++;
+    }
+    while(!star.isEmpty() && !brackets.isEmpty()){
+    if(brackets.pop()>star.pop()){
+    return false;
+    }
+    
+    }
+    return brackets.isEmpty();
+    }
+    }
+    

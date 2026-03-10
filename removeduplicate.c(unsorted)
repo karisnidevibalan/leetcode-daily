@@ -1,0 +1,59 @@
+#include<stdlib.h>
+#include<stdio.h>
+typedef struct Node{
+int d;
+struct Node* n;
+}node;
+node* duplicate(node* head){
+node* prev;
+node* temp;
+node* curr=head;
+while(curr!=NULL){
+prev=curr;
+temp=curr->n;
+while(temp!=NULL){
+if(curr->d==temp->d){
+prev->n=temp->n;
+temp=temp->n;
+}
+else{
+prev=temp;
+temp=temp->n;
+}
+
+}
+curr=curr->n;
+
+}
+return head;
+}
+void print(node* head){
+node* t=head;
+while(t->n!=NULL){
+printf("%d->",t->d);
+t=t->n;
+}
+printf("%d\n",t->d);
+}
+void main(){
+node* head=NULL;
+int a;
+while(scanf("%d",&a)==1){
+node* new=(node*)malloc(sizeof(node));
+new->d=a;
+new->n=NULL;
+if(head==NULL){
+head=new;
+}
+else{
+node* t=head;
+while(t->n!=NULL){
+t=t->n;
+}
+t->n=new;
+}
+}
+print(head);
+head=duplicate(head);
+print(head);
+}
